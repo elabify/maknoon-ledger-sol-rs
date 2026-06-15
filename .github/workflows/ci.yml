@@ -1,4 +1,4 @@
-# Verification gate for this Ledger wrapper crate: fmt + clippy + tests.
+# Verification gate for this hardware-wallet core crate: fmt + clippy + tests.
 # Pure verification, no secrets. The crate root is a cargo workspace.
 name: ci
 
