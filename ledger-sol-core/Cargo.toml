@@ -21,12 +21,16 @@ async-trait.workspace = true
 thiserror.workspace = true
 hex.workspace = true
 bs58.workspace = true
+ed25519-dalek.workspace = true
 
 uniffi = { workspace = true, features = ["tokio", "cli"] }
 tokio = { workspace = true, features = ["sync", "rt", "macros"] }
 
 [dev-dependencies]
 tokio = { workspace = true, features = ["sync", "rt", "macros", "test-util"] }
+serde_json = "1"
+hmac = "0.12"
+sha2 = "0.10"
 
 [build-dependencies]
 uniffi = { workspace = true, features = ["build"] }

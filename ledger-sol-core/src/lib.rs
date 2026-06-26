@@ -11,11 +11,16 @@
 
 mod client;
 mod error;
+mod message;
 mod transport;
 mod types;
 
 pub use client::{LedgerSolanaClient, SolanaAddress};
 pub use error::LedgerSolError;
+pub use message::{
+    sol_hardware_signed_message, sol_offchain_envelope, sol_sign_message, sol_verify_message,
+    SolanaMsgError, SolanaSignedMessage,
+};
 pub use transport::{SolanaExchangeResponse, SolanaLedgerTransport, SolanaTransportError};
 pub use types::SolanaSignature;
 
