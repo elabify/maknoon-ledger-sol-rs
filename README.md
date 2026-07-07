@@ -1,17 +1,20 @@
 # ledger-sol-rs
 
 A Rust core + [UniFFI](https://github.com/mozilla/uniffi-rs) bindings for talking to the
-**Ledger Solana app** from iOS (and other UniFFI targets). The Rust crate implements the
-Ledger Solana app's APDU protocol directly — address derivation, transaction signing, and
-off-chain message signing — while the host platform owns its own BLE / USB transport.
+**Ledger Solana app** from iOS and Android. The Rust crate implements the
+Ledger Solana app's APDU protocol directly (address derivation, transaction signing, and
+off-chain message signing), while the host platform owns its own BLE transport.
 
-Single source of truth, one artifact:
+Single source of truth, two artifacts:
 
 ```
 ledger-sol-rs/
    ├── ledger-sol-core   ←  Rust crate (LedgerSolanaClient)
-   └── ios               ←  build-xcframework.sh → LedgerSolCore.xcframework
+   ├── ios               ←  build-xcframework.sh → LedgerSolCore.xcframework
+   └── android           ←  android/build-aar.sh → ledger-sol-core.aar
 ```
+
+The Trezor counterpart across all four chains is `trezor-core-rs` (one unified crate).
 
 ## Design pillars
 
@@ -37,8 +40,9 @@ let msig: Vec<u8> = client.sign_offchain_message_at_path(path, message).await?;
 ## Building
 
 ```sh
-make            # fmt-check + clippy + test (CI default)
-make ios        # produces ios/LedgerSolCore.xcframework (run setup-ios-targets once)
+make                    # fmt-check + clippy + test (CI default)
+make ios                # produces ios/LedgerSolCore.xcframework (run setup-ios-targets once)
+./android/build-aar.sh  # produces the ledger-sol-core.aar for Android
 make clean
 ```
 
